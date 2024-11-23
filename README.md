@@ -24,6 +24,9 @@ Admin (Authorization):
 - Create/Edit Employee
 - List Attendance All Employee All Time
 
+## Image Flow
+![Image Flow](https://github.com/umars28/Employee-Attendance-Web/blob/main/public/Attendance.drawio.png?raw=true)
+
 ### Installation Steps
 
 1. **Extract ZIP Files or Clone it From Repository**
