@@ -23,13 +23,13 @@
 </head>
 <body>
     <div class="content">
-    @include('templates.navbar')
+    @include('layouts.navbar')
 
     <div class="container mt-5 pt-5 main-content">
         @yield('content') 
     </div>
 
-    @include('templates.footer')
+    @include('layouts.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @stack('scripts')
