@@ -16,8 +16,8 @@ class UserService
      */
     public function getEditProfileData(): array
     {
-        $user = Auth::user();
-        $userDetail = Employee::find($user->id);
+        $user = Auth::guard('api')->user();
+        $userDetail = Employee::where('user_id', $user->id)->first();
         $isAdmin = $user->role == RoleType::ADMIN;
 
         return compact('user', 'userDetail', 'isAdmin');
@@ -31,8 +31,8 @@ class UserService
      */
     public function updateProfile(array $data): void
     {
-        $user = Auth::user();
-        $employee = Employee::find($user->id);
+        $user = Auth::guard('api')->user();
+        $employee = Employee::where('user_id', $user->id)->first();
 
         DB::beginTransaction();
 

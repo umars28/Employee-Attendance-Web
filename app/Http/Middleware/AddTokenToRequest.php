@@ -2,13 +2,13 @@
 
 namespace App\Http\Middleware;
 
-use App\Enums\RoleType;
-use Auth;
 use Closure;
 use Illuminate\Http\Request;
+use Log;
+use Session;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class AddTokenToRequest
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,14 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::guard('api')->user();
-        if ($user && $user->role === RoleType::ADMIN) {
-            return $next($request);
-        }
+        $token = Session::get('api_token');
 
-        return redirect()->back();
+        if (!$token) {
+            return redirect()->route('login')->with('error', 'You need to login to access this page.');
+        }
+    
+        $request->headers->set('Authorization', 'Bearer ' . $token);    
+        return $next($request);
+    
     }
 }

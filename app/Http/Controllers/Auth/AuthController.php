@@ -8,7 +8,9 @@ use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use App\Services\AuthService;
 use Auth;
+use Http;
 use Illuminate\Http\Request;
+use Session;
 
 class AuthController extends Controller
 {
@@ -27,23 +29,29 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-
         $result = $this->authService->login($credentials);
 
         if ($result['success']) {
-            $request->session()->regenerate();
             return redirect()->intended('attendance');
+        } else {
+            return redirect()
+                ->back()
+                ->withErrors(['login_error' => $result['message']])
+                ->withInput();
         }
-
-        return redirect()->back()
-            ->withErrors(['login_error' => $result['message']])
-            ->withInput();
     }
 
     public function logout()
     {
-        $this->authService->logout();
-        return redirect('/login');
+        $result = $this->authService->logout();
+
+        if ($result['success']) {
+            return redirect()->route('login');
+        }
+
+        return redirect()
+            ->route('login')
+            ->with('error', $result['message']);    
     }
 
 }

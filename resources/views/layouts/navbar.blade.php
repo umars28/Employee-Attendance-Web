@@ -7,18 +7,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('attendance.index') }}">Attendance</a>
+                    <a class="nav-link {{ Route::is('attendance.index', 'attendance.store') ? 'active' : '' }}" href="{{ route('attendance.index') }}">Attendance</a>
                 </li>
-                @if (auth()->check() && auth()->user()->role === 'ADMIN')
+                @if (Auth::guard('api')->check() && Auth::guard('api')->user()->role === 'ADMIN')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('employees.index') }}">Employee</a>
+                        <a class="nav-link {{ Route::is('employees.index', 'employees.create', 'employees.edit', 'employees.update') ? 'active' : '' }}" href="{{ route('employees.index') }}">Employee</a>
                     </li>
                 @endif
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('profile.edit') }}">Profile</a>
+                    <a class="nav-link {{ Route::is('profile.edit', 'profile.update') ? 'active' : '' }}" href="{{ route('profile.edit') }}">Profile</a>
                 </li>
-
-                @if (auth()->check())
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                @if (Auth::guard('api')->check())
                     <form method="POST" action="{{ route('logout') }}" class="d-flex">
                         @csrf
                         <button type="submit" class="btn btn-outline-light">Logout</button>

@@ -16,8 +16,8 @@ class AttendanceService
      */
     public function getEmployeeAttendances(): Collection
     {
-        $user = Auth::user();
-        $employee = Employee::find($user->id);
+        $user = Auth::guard('api')->user();
+        $employee = Employee::where('user_id', $user->id)->first();
 
         return Attendance::where('employee_id', $employee->id)->get();
     }
@@ -55,8 +55,8 @@ class AttendanceService
      */
     public function updateAttendance(array $data): Attendance
     {
-        $user = Auth::user();
-        $employee = Employee::find($user->id);
+        $user = Auth::guard('api')->user();
+        $employee = Employee::where('user_id', $user->id)->first();
 
         if ($user->role !== \App\Enums\RoleType::EMPLOYEE) {
             throw new \Exception('Unauthorized action.');

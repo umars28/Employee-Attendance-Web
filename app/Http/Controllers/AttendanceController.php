@@ -23,8 +23,7 @@ class AttendanceController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
-
+        $user = Auth::guard('api')->user();
         if ($user->role === \App\Enums\RoleType::EMPLOYEE) {
             $attendances = $this->attendanceService->getEmployeeAttendances();
             $attendanceTypes = AttendanceType::getValues();

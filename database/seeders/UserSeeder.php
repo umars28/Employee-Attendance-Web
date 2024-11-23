@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Rendra',
                 'email' => 'rendragituloh@gmail.com',
-                'password' => bcrypt('password123'),
+                'password' => bcrypt('rendragituloh@gmail.com'),
                 'status' => StatusType::INACTIVE,
                 'role' => RoleType::EMPLOYEE,
                 'created_date' => now(),
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Khariz',
                 'email' => 'Kharizajaah@gmail.com',
-                'password' => bcrypt('password123'),
+                'password' => bcrypt('Kharizajaah@gmail.com'),
                 'status' => StatusType::ACTIVE,
                 'role' => RoleType::EMPLOYEE,
                 'created_date' => now(),
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Joko',
                 'email' => 'Jokoterdepan@gmail.com',
-                'password' => bcrypt('password123'),
+                'password' => bcrypt('Jokoterdepan@gmail.com'),
                 'status' => StatusType::ACTIVE,
                 'role' => RoleType::EMPLOYEE,
                 'created_date' => now(),
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Mariyam',
                 'email' => 'Maiyamyuk@gmail.com',
-                'password' => bcrypt('password123'),
+                'password' => bcrypt('Maiyamyuk@gmail.com'),
                 'status' => StatusType::ACTIVE,
                 'role' => RoleType::EMPLOYEE,
                 'created_date' => now(),
@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'password' => bcrypt('password123'),
+                'password' => bcrypt('admin@gmail.com'),
                 'status' => StatusType::ACTIVE,
                 'role' => RoleType::ADMIN,
                 'created_date' => now(),

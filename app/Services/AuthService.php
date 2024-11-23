@@ -4,10 +4,19 @@ namespace App\Services;
 
 use App\Enums\StatusType;
 use App\Models\User;
+use Http;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class AuthService
 {
+    protected $apiBaseUrl;
+
+    public function __construct()
+    {
+        $this->apiBaseUrl = env('BASE_URL_API', 'http://127.0.0.1:8000/api');
+    }
+
     /**
      * Proses login pengguna.
      *
@@ -16,28 +25,44 @@ class AuthService
      */
     public function login(array $credentials): array
     {
-        $user = User::where('email', $credentials['email'])->first();
+        $response = Http::post("{$this->apiBaseUrl}/login", $credentials);
 
-        if (!$user) {
-            return ['success' => false, 'message' => 'Email not found.'];
+        if ($response->successful()) {
+            $token = $response->json()['token'];
+            Session::put('api_token', $token);
+
+            return [
+                'success' => true,
+                'token' => $token,
+            ];
         }
 
-        if ($user->status !== StatusType::ACTIVE) {
-            return ['success' => false, 'message' => 'Your account is not active.'];
-        }
-
-        if (Auth::attempt($credentials)) {
-            return ['success' => true];
-        }
-
-        return ['success' => false, 'message' => 'Invalid email or password.'];
+        return [
+            'success' => false,
+            'message' => $response->json()['message'] ?? 'Login failed. Please try again.',
+        ]; 
     }
 
     /**
      * Proses logout pengguna.
      */
-    public function logout(): void
+    public function logout()
     {
-        Auth::logout();
+        $token = Session::get('api_token');
+
+        if ($token) {
+            $response = Http::withToken($token)->post("{$this->apiBaseUrl}/logout");
+
+            if ($response->successful()) {
+                Session::forget('api_token');
+                return ['success' => true];
+            }
+        }
+
+        return [
+            'success' => false,
+            'message' => 'Failed to logout. Please try again.',
+        ];
     }
+
 }

@@ -23,8 +23,8 @@ class UpdateProfileRequest extends FormRequest
      */
     public function rules(): array
     {
-        $userId = Auth::id();
-        $isAdmin = Auth::user()->role == RoleType::ADMIN;
+        $userId = Auth::guard('api')->user()->id;
+        $isAdmin = Auth::guard('api')->user()->role == RoleType::ADMIN;
 
         if ($isAdmin) {
             return [
