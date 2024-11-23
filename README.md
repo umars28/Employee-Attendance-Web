@@ -1,66 +1,63 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Attendance Web Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Description
+A web application for tracking employee attendance.
 
-## About Laravel
+## Requirement & Tech
+- ✔️ Laravel >= 11.
+- ✔️ PHP >= 8.2
+- ✔️ CDN Bootstrap 5.3
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Project Architecture
+MVC Pattern: The project follows the Model-View-Controller architecture to separate concerns and improve maintainability. To further enhance organization and scalability, a Service Layer has been introduced. This service layer encapsulates business logic, making it easier to maintain, test, and reuse across different parts of the application, ensuring that controllers remain focused on handling HTTP requests and responses.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Feature
+Employee (Authorization): 
+- Login & Logout (Sanctum Authentication)
+- Edit Profile User
+- Fill Attendance Each Day
+- List Attendance All Time
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Admin (Authorization):
+- Login & Logout (Sanctum Authentication)
+- Edit Profile User
+- Create/Edit Employee
+- List Attendance All Employee All Time
 
-## Learning Laravel
+### Installation Steps
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Extract ZIP Files or Clone it From Repository**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+   Extract ZIP file or Clone it to a directory of your choice on your computer.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Open the Project in your Text Editor**
 
-## Laravel Sponsors
+    Use a code editor like Visual Studio Code or another code editor.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Install Dependencies**
 
-### Premium Partners
+   Copy and paste the following command into your project's command line
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    ```composer install```
 
-## Contributing
+4. **Setup Environment**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   In the terminal or VS Code command line, copy the .env.example configuration file to .env using the command, adjust the postgreSql config db and also the localhost url in BASE_URL_API so that errors do not occur due to configuration errors:
 
-## Code of Conduct
+   ```cp .env.example .env```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Generate Key**
 
-## Security Vulnerabilities
+    Run the following command in your command line:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```php artisan key:generate```   
 
-## License
+6. **Setup Database**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    Create DB with name ```employee_attendance``` then run the command line ```php artisan migrate:fresh --seed```
+   
+7. **Run Web App**
+
+   Run web app use command line
+
+   ```php artisan serve```
