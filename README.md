@@ -12,7 +12,8 @@ A web application for tracking employee attendance.
 MVC Pattern: The project follows the Model-View-Controller architecture to separate concerns and improve maintainability. To further enhance organization and scalability, a Service Layer has been introduced. This service layer encapsulates business logic, making it easier to maintain, test, and reuse across different parts of the application, ensuring that controllers remain focused on handling HTTP requests and responses.
 
 ## Feature
-NOTE : Take a look on seeder to use account for login
+NOTE : Take a look on seeder to use account for login.
+
 Employee (Authorization): 
 - Login & Logout (Sanctum Authentication)
 - Edit Profile User
@@ -22,7 +23,7 @@ Employee (Authorization):
 Admin (Authorization):
 - Login & Logout (Sanctum Authentication)
 - Edit Profile User
-- Create/Edit Employee (All Created Employee Using Their Email For Defaut Password, Can Change by theirself later in edit profile)
+- Create/Edit Employee (All Created Employee Using Their Email For Defaut Password, Can Change by Theirself Later in Edit Profile)
 - List Attendance All Employee All Time
 
 ## Image Flow
